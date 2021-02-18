@@ -1,17 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import injectGlobal  from 'styled-components';
+import createGlobalStyle  from 'styled-components'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import normalize from 'normalize.css/normalize.css';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+import Loader from './components/Core/Loader';
+import {store, persistor} from './redux/store';
+import routes from "../src/config/routes"
+
+import globalStyle from './static/globalStyle'
+
+// injectGlobal([globalStyle + normalize])
+
+render(
+    <Provider store={store}>
+        <PersistGate persistor={persistor} loading={<Loader/>}>
+            {routes(store)}
+        </PersistGate>
+    </Provider>,
+    document.getElementById('root')
+)
+
