@@ -57,6 +57,13 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'rest_framework',
+    'rest_framework.authtoken',
+
+    'rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
 
 )
 
@@ -67,7 +74,7 @@ LOCAL_APPS = (
 )
 
 API_APPS = (
-    'api.v1.account',
+    # 'api.v1.account',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + API_APPS
@@ -168,3 +175,6 @@ MEDIA_ROOT = str(APPS_DIR('media'))
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
+
+SITE_ID = 1
+
