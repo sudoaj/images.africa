@@ -6,12 +6,9 @@ import createHistory from 'history/createBrowserHistory'
 import {ThemeProvider} from 'styled-components'
 
 import {theme} from "../static/colors";
-
-// import Landing from "../components/Landing"
 import NotFound from "../components/NotFound"
 import Landing from "../views/Landing"
-// import CashHome from '../views/cash-home'
-// import NotFound from '../components/Core/NotFound'
+
 
 
 const history = createHistory()
@@ -21,6 +18,19 @@ export default store => {
       <Router history={history}>
         <Switch>
           <Route exact path="/" component={Landing}/>
+          {/* <Route exact path="Homepage" component={Homepage}/> */}
+          {/* <Route exact path="Login" component={Login}/> */}
+          {/* <Route exact path="Signup" component={Signup}/> */}
+          {/* <Route exact path="Profile" component={Profile}/> */}
+          {/* <Route exact path="Homepage" component={Homepage}/> */}
+          {/* <Route exact path="Photos" component={PhotosPage}/> */}
+          {/* <Route exact path="Audio" component={AudioPage}/> */}
+          {/* <Route exact path="Videos" component={VideosPage}/> */}
+          {/* <Route exact path="PhotoDetails" component={PhotoDetails}/> */}
+          {/* <Route exact path="AudioDetails" component={AudioDetails}/> */}
+          {/* <Route exact path="VideoDetails" component={VideoDetails}/> */}
+
+
           <Route path="*" component={NotFound}/>
         </Switch>
       </Router>
