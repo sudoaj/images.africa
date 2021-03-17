@@ -1,2 +1,0 @@
-# images.africa
-# images.africa
