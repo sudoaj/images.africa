@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     #API URL ENDPOINT
-    url(r'^api/', include('api.v1.account.urls')),
+    url(r'^api/', include('api.v1.profile.urls')),
 
     #AUTHENTICATION URL ENDPOINT
     url(r'^auth/', include('django.contrib.auth.urls')),

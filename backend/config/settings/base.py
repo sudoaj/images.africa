@@ -70,11 +70,11 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'project.homepage',
     'project.aboutpage',
-    'project.authenticate'
+    'project.authenticate',
 )
 
 API_APPS = (
-    # 'api.v1.account',
+    'api.v1.profile',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + API_APPS
