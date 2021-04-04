@@ -2,9 +2,13 @@ import React, {Fragment} from 'react'
 import styled from 'styled-components'
 import withRouter from 'react-router-dom/withRouter'
 import {Link} from 'react-router-dom'
-import { render } from '@testing-library/react';
+import { useState } from 'react'
 import HeaderComponent from '../../components/Core/Header'
 import FooterComponent from '../../components/Core/Footer'
+import TrendingComponent from '../../components/Core/Trending'
+import Media from '../../components/Core/Media'
+import Stories from '../../components/Core/Stories'
+
 import Background from  './ele.jpeg'
 
 const Wrapper= styled.div`
@@ -12,7 +16,7 @@ const Wrapper= styled.div`
     top:0;
 `
 const SearchInput = styled.input`
-    height: 60px;
+    height: 50px;
     width: 585px;
     border-radius: 10px;
     background-color: white;
@@ -45,7 +49,7 @@ const JumboContent = styled.div `
     font-weight: bold;
     border: 1px  #f1f1f1;
     position: absolute;
-    top: 20%;
+    top: 15%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
@@ -59,7 +63,8 @@ const Text = styled.p `
     text-align:${(props) => props.align};
     color: ${({theme}) => theme.colors.brown};
     padding-right: 40px;
-    padding-bottom:${(props) => props.borderBottom};
+    padding-top:${(props) => props.paddingTop};
+    padding-bottom:${(props) => props.paddingBottom};
     border-bottom: ${(props) => props.borderBottom};
 `
 const SpanText = styled.span `
@@ -104,37 +109,90 @@ const SpanText1 = styled.span `
 `
 const SecondMenu = styled.section `
     background-color: #FFF8EF;  
+    height: 50px;
     `
 const SecondMenuInner = styled.div `
     display:flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+   
 
 `
 class Landing extends React.Component{
+    constructor(props) {
+        super(props)
+        this.state = { 
+            trendingClicked: true,
+            trendingBorder: "solid 4px",
+            mediaClicked: false,
+            mediaBorder: "solid 0px",
+            storiesClicked: false,
+            storiesBorder: "solid 0px",
+        }
+      }
+      changeTrendingMenu = () => {
+        this.setState({
+          ...this.state,
+          trendingClicked: true,
+          trendingBorder: "solid 4px",
+          mediaClicked: false,
+          mediaBorder: "solid 0px",
+          storiesClicked: false,
+          storiesBorder: "solid 0px",
+
+        })
+      }
+      changeStoriesMenu = () => {
+        this.setState({
+          ...this.state,
+          mediaClicked: true,
+          mediaBorder: "solid 0px",
+          trendingClicked: false,
+          trendingBorder: "solid 0px",
+          storiesClicked: false,
+          storiesBorder: "solid 4px",
+
+        })
+      }
+
+      changeMediaMenu = () => {
+        this.setState({
+          ...this.state,
+          mediaClicked: false,
+          mediaBorder: "solid 4px",
+          trendingClicked: false,
+          trendingBorder: "solid 0px",
+          storiesClicked: true,
+          storiesBorder: "solid 0px",
+
+        })
+      }
     render(){
         return(
             
             <Wrapper>
                 <HeaderComponent/>
                 <JumboContent>
-                <Text size="30px" align="center">Free Stock Images That Represents <SpanText>Africa</SpanText></Text>
+                <Text size="30px" align="center" >Free Stock Images That Represents <SpanText>Africa</SpanText></Text>
                     <SearchInput placeholder="Search for melanin"/>
                     <Text align="center"><SpanText1>Suggested:</SpanText1> Yoruba, Igbo, Nigerian, Ghana, Liberia, Zoo, Happy</Text>
                 </JumboContent>
                 <SecondMenu>
                     <SecondMenuInner>
-   
-                    <Text  borderBottom="solid 4px">Trending</Text>
-                    <Text >Photo</Text>
-                    <Text >Video</Text>
-                    <Text >Gifs</Text>
-
-
-                   
-
+                        <Link style={{ textDecoration: 'none' }} onClick={this.changeTrendingMenu}>
+                            <Text  borderBottom={this.state.trendingBorder} paddingBottom="10px" align="center" >Trending</Text>
+                        </Link>
+                        <Link  style={{ textDecoration: 'none' }} onClick={this.changeMediaMenu}>
+                            <Text  borderBottom={this.state.mediaBorder} paddingBottom="10px" align="center" >Media</Text>
+                        </Link>
+                        <Link style={{ textDecoration: 'none' }} onClick={this.changeStoriesMenu}>
+                            <Text borderBottom={this.state.storiesBorder} paddingBottom="10px" align="center" >Stories</Text>
+                        </Link>
                     </SecondMenuInner>
                 </SecondMenu>
+                {this.state.trendingClicked && <TrendingComponent/>}
+                {this.state.mediaClicked && <Stories/>}
+                {this.state.storiesClicked && <Media/>}
                 <FooterComponent/>
             </Wrapper>
         )

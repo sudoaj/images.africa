@@ -16,7 +16,7 @@ const FixedHeaderWrap = styled.header`
     background-size: cover;
     background-color:rgba(255,255,255,0.1);
     border-bottom: 1px solid #402519;
-    height: 400px;
+    height: 300px;
     width:100%
 `
 const FixedHeader = styled.div`
